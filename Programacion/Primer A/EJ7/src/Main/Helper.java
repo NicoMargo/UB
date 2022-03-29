@@ -9,12 +9,8 @@ public class Helper {
     private static String opcionIngresada;
     private static Jugador miJugador = new Jugador();
     private static short puntoJugador;
-    public static short dadosResultado;
+    private static short dadosResultado;
     private static double apuesta;
-
-    public static short getDadosResultados(){
-        return  dadosResultado;
-    }
 
     static boolean nuevoJuego(){
 
@@ -47,15 +43,19 @@ public class Helper {
         System.out.println("Ingrese una nueva apuesta, usted tiene un saldo en el banco de $"+miJugador.getSaldoBanco());
 
         do{
-            apuesta = scanner.nextDouble();
-            scanner.nextLine();
-            if (apuesta <= 0 || apuesta > miJugador.getSaldoBanco()){ //chequeo que sea una apuesta valida
+            try {
+                apuesta = scanner.nextDouble();
+                if (apuesta <= 0 || apuesta > miJugador.getSaldoBanco()) { //chequeo que sea una apuesta valida
+                    System.out.println("Apuesta invalida, por favor ingrese una apuesta mayor a 0 y menor o igual a su saldo de banco");
+                } else {
+                    miJugador.setSaldoBanco(miJugador.getSaldoBanco() - apuesta);
+                    System.out.println("Muy bien! usted realizo una apuesta de $" + apuesta + "\nAhora tiene un saldo de $" + miJugador.getSaldoBanco());
+                    apuestaCorrecta = false;
+                }
+            }catch (Exception e){ //si el usuario ingreso un caracter que no es dobule salta al catch y se repite el ingreso de la apuesta
                 System.out.println("Apuesta invalida, por favor ingrese una apuesta mayor a 0 y menor o igual a su saldo de banco");
-            }else{
-                miJugador.setSaldoBanco(miJugador.getSaldoBanco()- apuesta);
-                System.out.println("Muy bien! usted realizo una apuesta de $"+ apuesta+"\nAhora tiene un saldo de $"+miJugador.getSaldoBanco());
-                apuestaCorrecta = false;
             }
+            scanner.nextLine();
 
         }while(apuestaCorrecta); // se repite el ingreso de la apuesta hasta que sea valida
 
@@ -99,7 +99,7 @@ public class Helper {
 
     public static void charla(){ //metodo que da charla random xdddd
         Random random = new Random();
-        int numeroRandom = random.nextInt(6);
+        int numeroRandom = random.nextInt(8);
         switch(numeroRandom){
             case 0:
                 System.out.println("Hoy es su dia de suerte, este sera su tiro ganador");
@@ -118,6 +118,12 @@ public class Helper {
                 break;
             case 5:
                 System.out.println("Siga jugando craps para darle una buena educacion a sus hijos");
+                break;
+            case 6:
+                System.out.println("Oh, vamos, arriesguese!");
+                break;
+            case 7:
+                System.out.println("Que lindo dia para ganar, no?");
                 break;
         }
         System.out.println("Sigue jugando! su tiro fue un " + dadosResultado);
