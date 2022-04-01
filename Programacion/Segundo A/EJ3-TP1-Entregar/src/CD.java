@@ -1,17 +1,15 @@
-public class DVD {
+public class CD {
+
     private String titulo;
     private String genero;
     private short tiempo;
     private boolean tengo;
-    private String director;
+    private String interprete;
     private String comentario;
+    private short cantidadCanciones;
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public CD(){
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getGenero() {
@@ -38,12 +36,12 @@ public class DVD {
         this.tengo = tengo;
     }
 
-    public String getDirector() {
-        return director;
+    public String getInterprete() {
+        return interprete;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setInterprete(String interprete) {
+        this.interprete = interprete;
     }
 
     public String getComentario() {
@@ -54,21 +52,27 @@ public class DVD {
         this.comentario = comentario;
     }
 
-    public DVD(){
-
+    public short getCantidadCanciones() {
+        return cantidadCanciones;
     }
 
-    public DVD(String titulo, String genero, short tiempo, boolean tengo, String director, String comentario) {
+    public void setCantidadCanciones(short cantidadCanciones) {
+        this.cantidadCanciones = cantidadCanciones;
+    }
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
         this.titulo = titulo;
-        this.genero = genero;
-        this.tiempo = tiempo;
-        this.tengo = tengo;
-        this.director = director;
-        this.comentario = comentario;
     }
+
+
+
+
     @Override
     public String toString()
     {
-        return "- Titulo: " + this.titulo + " Genero: " + this.genero + " Director: " + this.director + " Duracion: " + this.tiempo + " Tengo: " + this.tengo + " Comentario: " + this.comentario;
+        return "- Titulo: " + this.titulo + " Genero: " + this.genero + " Interprete: " + this.interprete + " Duracion: " + this.tiempo + " Tengo: " + this.tengo + " Comentario: " + this.comentario + "Cantidad de canciones: " + this.cantidadCanciones;
     }
 }

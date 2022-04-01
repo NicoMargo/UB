@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Helper {
@@ -16,7 +14,10 @@ public class Helper {
         System.out.println("6 = Listar los DVD que duran menor a un tiempo en minutos");
         System.out.println("7 = Listar los DVD por director");
         System.out.println("8 = Listar todos los DVD ordenados por titulo");
-        System.out.println("9 = Salir");
+        System.out.println("9 = Informe cantidad de DVD");
+        System.out.println("10 =Informe cantidad de DVD que tengo");
+
+        System.out.println("11 = Salir");
 
         short opcionIngresada = 0;
         boolean opcionCorrecta;
@@ -24,7 +25,7 @@ public class Helper {
             try {
                 opcionIngresada = scanner.nextShort();
                 scanner.nextLine();
-                if (opcionIngresada != 1 && opcionIngresada != 2 && opcionIngresada != 3 && opcionIngresada != 4 && opcionIngresada != 5 && opcionIngresada != 6 && opcionIngresada != 7 && opcionIngresada != 8 && opcionIngresada != 9) {
+                if (opcionIngresada <1 && opcionIngresada > 11) {
                     System.out.println("Opcion invalida, por favor vuelva a ingresar");
                     opcionCorrecta = true;
                 } else {
@@ -40,21 +41,58 @@ public class Helper {
         return opcionIngresada;
     }
 
-
-    private static boolean buscarCatalogoPorTitulo(){
-return true;
+    public static boolean iniciarOperacion(short opcion){
+        boolean seguir = true;
+        switch(opcion){
+            case 1:
+                Catalogo.nuevoDVD();
+                break;
+            case 2:
+                Catalogo.eliminarDVD();
+                break;
+            case 3:
+                Catalogo.modificarDVD();
+                break;
+            case 4:
+                Catalogo.mostrarTodosDvd();
+                break;
+            case 5:
+                Catalogo.mostrarDvdQueTengo();
+                break;
+            case 6:
+                Catalogo.mostrarDvdMenorTiempo();
+                break;
+            case 7:
+                Catalogo.mostrarDvdPorDirector();
+                break;
+            case 8:
+                System.out.println("Que lindo dia para ganar, no?");
+                break;
+            case 9:
+                Catalogo.informarCantidadDVD();
+                break;
+            case 10:
+                Catalogo.informarCantidadDVDQueTengo();
+                break;
+            case 11:
+                System.out.println("Adios! Que tenga un grandioso dia :)");
+                seguir = false;
+                break;
+            default:
+                System.err.println("Opcion no valida");
+                break;
+        }
+        return seguir;
     }
 
-    //Metodos Auxiliares
 
     public static String ingresoStringValido(String campo){
         System.out.println("Ingresar " + campo);
         String datoIngresado;
-        boolean datoCorrecto;
+        boolean datoCorrecto = true;
         do{
             datoIngresado = scanner.nextLine();
             if (datoIngresado.equals("")){
-                datoCorrecto = true;
                 System.out.println("No se permiten valores vacios");
             }else {
                 datoCorrecto = false;
@@ -71,14 +109,14 @@ return true;
             try {
                 datoIngresado = scanner.nextShort();
                 scanner.nextLine();
-                if(datoIngresado > 0){
+                if(datoIngresado >= 0){
                     datoCorrecto = false;
                 }else {
                     datoCorrecto = true;
-                    System.out.print("El tiempo no puede ser negativo");
+                    System.out.print("No puede ser negativo");
                 }
             }catch (Exception e){
-                System.out.print("Opcion incorrecta, ingrese un tiempo valido en imnutos mayo a 0");
+                System.out.print("Opcion incorrecta, ingrese un valor valido");
                 datoCorrecto = true;
             }
         }while(datoCorrecto);
