@@ -5,7 +5,7 @@ import java.util.List;
 public class CatalogoDVD {
     private static List<DVD> catalogoDvd = new ArrayList<DVD>();
 
-    public static void cargarPeliculasporDefecto(){
+    public static void cargarPeliculasporDefecto(){ //creo un par de dvds por defecto
         DVD dvd1 = new DVD("nemo","infantil",(short)20, true,"pixar","Leyenda");
         DVD dvd2 = new DVD("toy story","accion",(short)100, false,"pixar","Buenisima");
         DVD dvd3 = new DVD("monster inc","infantil",(short)55, true,"disney","Excelente");
@@ -120,36 +120,36 @@ public class CatalogoDVD {
 
     public static void mostrarTodosDvd(){
         System.out.println("Mostrar todos los Dvd:");
-        for(DVD undvd : catalogoDvd){
-            System.out.println(undvd);
+        for(DVD undvd : catalogoDvd){ //recorro toda el arraylist
+            System.out.println(undvd); //muestro cada dvd
         }
         System.out.println("\n");
     }
 
     public static void mostrarDvdQueTengo(){
         System.out.println("Mostrar todos los Dvd que tengo:");
-        for(DVD undvd : catalogoDvd){
-            if(undvd.isTengo()){
-                System.out.println(undvd);
+        for(DVD undvd : catalogoDvd){ //recorro todo el arraylist
+            if(undvd.isTengo()){ //pregunto si el dvd lo tengo
+                System.out.println(undvd); //si lo tengo se muestra
             }
         }
         System.out.println("\n");
     }
     public static void mostrarDvdMenorTiempo(){
-        short tiempoIngresado = Helper.ingresoShortValido("tiempo");
+        short tiempoIngresado = Helper.ingresoShortValido("tiempo"); //ingreso el tiempo
         System.out.println("Los dvd que tienen un tiempo menor a " + tiempoIngresado);
-        for(DVD undvd : catalogoDvd){
-            if(undvd.getTiempo() < tiempoIngresado){
-                System.out.println(undvd);
+        for(DVD undvd : catalogoDvd){ //recorro todo el arraylist
+            if(undvd.getTiempo() < tiempoIngresado){ //pregunto si el tiempo de un dvd es menor al ingresado
+                System.out.println(undvd); //en caso de ser verdad se muestra
             }
         }
         System.out.println("\n");
     }
     public static void mostrarDvdPorDirector(){
-        String director = Helper.ingresoStringValido("director");
+        String director = Helper.ingresoStringValido("director"); //ingreso director
         System.out.println("Los dvd que tienen al director" + director);
-        for(DVD undvd : catalogoDvd){
-            if(undvd.getDirector().equalsIgnoreCase(director)){
+        for(DVD undvd : catalogoDvd){ //recorro todo el arraylist
+            if(undvd.getDirector().equalsIgnoreCase(director)){ //pregunto si el director de un dvd es igual al director ingresado
                 System.out.println(undvd);
             }
         }
@@ -157,30 +157,28 @@ public class CatalogoDVD {
     }
 
     public static void informarCantidadDVD(){
-        System.out.println("El total de dvd en el catalogo es " + catalogoDvd.size());
+        System.out.println("El total de dvd en el catalogo es " + catalogoDvd.size()); //se muestra el size del catalogoDVD
     }
 
     public static void informarCantidadDVDQueTengo(){
-        int contadorDvd = 0;
-        for(DVD unDvd : catalogoDvd){
-            if (unDvd.isTengo()){
-                contadorDvd++;
+        int contadorDvd = 0; //se declara e inicializa el contador en 0
+        for(DVD unDvd : catalogoDvd){ //recorro el catalogo
+            if (unDvd.isTengo()){ //pregunto si lo tengo
+                contadorDvd++; //si lo tengo sumo uno al contador
             }
         }
-        System.out.println("El total de dvd en el catalogo que tengo es " + contadorDvd);
+        System.out.println("El total de dvd en el catalogo que tengo es " + contadorDvd); //muestro el contador
     }
 
     public static void ordenarXTitulo(){
-        String aux[] = new String[catalogoDvd.size()];
-        for(int i = 0; i < catalogoDvd.size(); i++){
-            aux[i] = catalogoDvd.get(i).getTitulo();
+        String aux[] = new String[catalogoDvd.size()]; //creo un array auxiliar
+        for(int i = 0; i < catalogoDvd.size(); i++){ //recorro todo el catalogo
+            aux[i] = catalogoDvd.get(i).getTitulo();//guardo el titulo de cada dvd en el array auxiliar
         }
-        Arrays.sort(aux);
-        for(int i =0; i< aux.length;i++){
-            System.out.println(aux[i]);
+        Arrays.sort(aux);//ordeno el array
+        for(int i =0; i< aux.length;i++){ //recorro el array auxiliar
+            System.out.println(aux[i]); //muestro el array con los titulos ya ordenados
         }
     }
-
-
 
 }

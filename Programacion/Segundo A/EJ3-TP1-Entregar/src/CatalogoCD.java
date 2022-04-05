@@ -5,6 +5,9 @@ import java.util.List;
 public class CatalogoCD {
     private static List<CD> catalogoCD = new ArrayList<CD>();
 
+
+    //TODOS LOS COMENTARIOS DE DVD APLICAN PARA CD YA QUE ES LO MISMO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
     public static void cargarCDporDefecto(){
         CD cd1 = new CD("The dark side of the moon","rock",(short)60,true,"Pink Floyd","Leyenda",(short)8);
         CD cd2 = new CD("Live In Australia","pop",(short)70,true,"Elton John","Mistico",(short)9);
@@ -127,7 +130,7 @@ public class CatalogoCD {
     public static void mostrarTodosCD(){
         System.out.println("Mostrar todos los CD:");
         for(CD unCD : catalogoCD){
-            System.out.println(unCD);
+            System.out.println(catalogoCD);
         }
         System.out.println("\n");
     }
