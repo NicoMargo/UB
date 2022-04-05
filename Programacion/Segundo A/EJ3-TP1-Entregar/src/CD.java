@@ -8,6 +8,16 @@ public class CD {
     private String comentario;
     private short cantidadCanciones;
 
+    public CD(String titulo, String genero, short tiempo, boolean tengo, String interprete, String comentario, short cantidadCanciones) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.tiempo = tiempo;
+        this.tengo = tengo;
+        this.interprete = interprete;
+        this.comentario = comentario;
+        this.cantidadCanciones = cantidadCanciones;
+    }
+
     public CD(){
 
     }
@@ -66,7 +76,6 @@ public class CD {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
 
 
 

@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Catalogo {
+public class CatalogoDVD {
     private static List<DVD> catalogoDvd = new ArrayList<DVD>();
 
     public static void cargarPeliculasporDefecto(){
@@ -17,7 +18,7 @@ public class Catalogo {
         catalogoDvd.add(dvd5);
     }
 
-    public static void nuevoDVD() {
+    public static void nuevoDVD() { //metodo que agrega un dvd
 
         short tiempo = 0;
         boolean opcionCorrecta;
@@ -41,15 +42,15 @@ public class Catalogo {
         System.out.println("Se ingreso correctamente el nuevo DVD");
     }
 
-    public static void eliminarDVD() {
-        String tituloEliminar = Helper.ingresoStringValido("titulo para eliminar");
+    public static void eliminarDVD() { //metodo que elimina un dvd
+        String tituloEliminar = Helper.ingresoStringValido("titulo para eliminar"); //se ingresa un titulo para buscarlo y eliminar el dvd
         boolean encontrado = false;
-        for(DVD midvd : catalogoDvd){
-            if (midvd.getTitulo().equalsIgnoreCase(tituloEliminar)){
-                catalogoDvd.remove(midvd);
+        for(DVD midvd : catalogoDvd){ //recorro todos los dvd
+            if (midvd.getTitulo().equalsIgnoreCase(tituloEliminar)){ //pregunto por cada dvd si es igual al titulo ingresado
+                catalogoDvd.remove(midvd); //si encuentro el dvd se elimina
                 encontrado = true;
                 System.out.println("Se elimino el Dvd " + tituloEliminar);
-                break;
+                break; //se termina el for
             }
         }
         if(!encontrado){
@@ -57,15 +58,15 @@ public class Catalogo {
         }
     }
     public static void modificarDVD(){
-        String tituloEliminar = Helper.ingresoStringValido("titulo para modificar");
+        String titulo = Helper.ingresoStringValido("titulo para modificar"); //se ingresa el titulo para modificar el dvd
         boolean encontrado = false;
-        for(DVD midvd : catalogoDvd){
-            if (midvd.getTitulo().equalsIgnoreCase(tituloEliminar)){
+        for(DVD midvd : catalogoDvd){ //se recorre la lista
+            if (midvd.getTitulo().equalsIgnoreCase(titulo)){ //si encuentro el dvd con el titulo ingresado
                 encontrado = true;
                 boolean seguirEditando = true;
                 do{
-                    System.out.println("Ingresar que dato quiere modificar: ");
-                    int opcion;
+                    System.out.println("Ingresar que dato quiere modificar: "); //menu que opcion se quiere modificar
+                    short opcion;
                     System.out.println("""
                         Ingresar opcion:
                         0. titulo
@@ -104,6 +105,9 @@ public class Catalogo {
                         case 6:
                             seguirEditando = false;
                             break;
+                        default:
+                            System.out.println("Opcion no valida");
+                            break;
                     }
                 }while(seguirEditando);
                 break;
@@ -133,7 +137,7 @@ public class Catalogo {
     }
     public static void mostrarDvdMenorTiempo(){
         short tiempoIngresado = Helper.ingresoShortValido("tiempo");
-        System.out.println("Los dvd que un timpo menor a " + tiempoIngresado);
+        System.out.println("Los dvd que tienen un tiempo menor a " + tiempoIngresado);
         for(DVD undvd : catalogoDvd){
             if(undvd.getTiempo() < tiempoIngresado){
                 System.out.println(undvd);
@@ -164,6 +168,17 @@ public class Catalogo {
             }
         }
         System.out.println("El total de dvd en el catalogo que tengo es " + contadorDvd);
+    }
+
+    public static void ordenarXTitulo(){
+        String aux[] = new String[catalogoDvd.size()];
+        for(int i = 0; i < catalogoDvd.size(); i++){
+            aux[i] = catalogoDvd.get(i).getTitulo();
+        }
+        Arrays.sort(aux);
+        for(int i =0; i< aux.length;i++){
+            System.out.println(aux[i]);
+        }
     }
 
 
