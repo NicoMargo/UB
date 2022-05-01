@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 public class CatalogoCD {
-    private static List<CD> catalogoCD = new ArrayList<CD>();
+    private static ArrayList<CD> catalogoCD = new ArrayList<CD>();
 
 
     //TODOS LOS COMENTARIOS DE DVD APLICAN PARA CD YA QUE ES LO MISMO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -130,7 +128,7 @@ public class CatalogoCD {
     public static void mostrarTodosCD(){
         System.out.println("Mostrar todos los CD:");
         for(CD unCD : catalogoCD){
-            System.out.println(catalogoCD);
+            System.out.println(unCD);
         }
         System.out.println("\n");
     }
@@ -168,6 +166,8 @@ public class CatalogoCD {
     public static void informarCantidadCD(){
         System.out.println("El total de CD en el catalogo es " + catalogoCD.size());
     }
+
+
 
     public static void informarCantidadCDQueTengo(){
         int contadorCD = 0;

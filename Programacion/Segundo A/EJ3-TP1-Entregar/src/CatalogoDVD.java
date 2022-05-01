@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class CatalogoDVD {
-    private static List<DVD> catalogoDvd = new ArrayList<DVD>();
+    private static ArrayList<DVD> catalogoDvd = new ArrayList<DVD>();
 
     public static void cargarPeliculasporDefecto(){ //creo un par de dvds por defecto
         DVD dvd1 = new DVD("nemo","infantil",(short)20, true,"pixar","Leyenda");
@@ -19,9 +18,6 @@ public class CatalogoDVD {
     }
 
     public static void nuevoDVD() { //metodo que agrega un dvd
-
-        short tiempo = 0;
-        boolean opcionCorrecta;
 
         System.out.println("Agregar DVD:");
         DVD nuevoDvd = new DVD();

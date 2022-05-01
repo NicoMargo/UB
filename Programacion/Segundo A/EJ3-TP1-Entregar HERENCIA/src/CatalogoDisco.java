@@ -26,13 +26,14 @@ public class CatalogoDisco {
         catalogoDisco.add(cd4);
     }
 
-    public static void nuevoDisco(byte tipoDisco) { //metodo que agrega un dvd
+    public static void nuevoDisco(short tipoDisco) { //metodo que agrega un dvd
 
         System.out.println("Agregar Disco:");
         Disco nuevoDisco;
 
-        if(tipoDisco == 1){
-            nuevoDisco = new CD( Helper.ingresoStringValido("titulo"),
+        if(tipoDisco == 1){ // en caso de ser cd
+            nuevoDisco = new CD( //se crea un nuevo objeto CD con un constructor con parametros. Cada metodo de Helper.ingreso.... devuelve el valor ingresado validado previamente
+                    Helper.ingresoStringValido("titulo"),
                     Helper.ingresoStringValido("genero"),
                     Helper.ingresoShortValido("tiempo"),
                     Helper.ingresoBooleanValido("si lo tiene:  True si lo tiene, False si no lo tiene."),
@@ -40,8 +41,8 @@ public class CatalogoDisco {
                     Helper.ingresoStringValido("comentario"),
                     Helper.ingresoShortValido("cantidad de canciones"));
 
-        }else{
-            nuevoDisco = new DVD(
+        }else{ //en caso de ser DVD
+            nuevoDisco = new DVD( //se crea un nuevo objeto DVD con un constructor con parametros. Cada metodo de Helper.ingreso.... devuelve el valor ingresado validado previamente
                     Helper.ingresoStringValido("titulo"),
                     Helper.ingresoStringValido("genero"),
                     Helper.ingresoShortValido("tiempo"),
@@ -50,16 +51,16 @@ public class CatalogoDisco {
                     Helper.ingresoStringValido("comentario"));
         }
 
-        catalogoDisco.add(nuevoDisco);
+        catalogoDisco.add(nuevoDisco); // se agrega el disco
         System.out.println("Se ingreso correctamente el nuevo Disco");
     }
 
-    public static void eliminarDisco(byte tipoDisco) { //metodo que elimina un Disco
+    public static void eliminarDisco(short tipoDisco) { //metodo que elimina un Disco, recibe por parametro el tipo de disco 1 = cd   2 = dvd
         String tituloEliminar = Helper.ingresoStringValido("titulo para eliminar"); //se ingresa un titulo para buscarlo y eliminar el Disco
         boolean encontrado = false;
         for(Disco disco : catalogoDisco){ //recorro todos los dvd
             if (disco.getTitulo().equalsIgnoreCase(tituloEliminar)){ //pregunto por cada Disco si es igual al titulo ingresado
-                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD))
+                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                 catalogoDisco.remove(disco); //si encuentro el disco se elimina
                 encontrado = true;
                 System.out.println("Se elimino el Disco " + tituloEliminar);
@@ -71,17 +72,18 @@ public class CatalogoDisco {
         }
     }
 
-    public static void modificarDisco(){
+    public static void modificarDisco(short tipoDisco){
         String titulo = Helper.ingresoStringValido("titulo para modificar"); //se ingresa el titulo para modificar el dvd
         boolean encontrado = false;
-        for(Disco midvd : catalogoDisco){ //se recorre la lista
-            if (midvd.getTitulo().equalsIgnoreCase(titulo)){ //si encuentro el dvd con el titulo ingresado
+        for(Disco unDisco : catalogoDisco){ //se recorre la lista
+            if (unDisco.getTitulo().equalsIgnoreCase(titulo) && ((tipoDisco == 1 && unDisco instanceof CD) || (tipoDisco == 2 && unDisco instanceof DVD))){ //si encuentro el dvd con el titulo ingresado y pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                 encontrado = true;
                 boolean seguirEditando = true;
                 do{
                     System.out.println("Ingresar que dato quiere modificar: "); //menu que opcion se quiere modificar
                     short opcion;
-                    System.out.println("""
+                    if(unDisco instanceof DVD){
+                        System.out.println("""
                         Ingresar opcion:
                         0. titulo
                         1. genero
@@ -90,73 +92,123 @@ public class CatalogoDisco {
                         4. modificar adquisicion Disco
                         5. Comentario
                         6. salir""");
-                    opcion = Helper.ingresoShortValido("opcion");
-                    switch (opcion) {
-                        case 0:
-                            System.out.println("Modificar titulo: ");
-                            midvd.setTitulo(Helper.ingresoStringValido("titulo"));
-                            break;
-                        case 1:
-                            System.out.println("Modificar genero: ");
-                            midvd.setGenero(Helper.ingresoStringValido("genero"));
-                            break;
-                        case 2:
-                            System.out.println("Modificar director: ");
-                            midvd.setDirector(Helper.ingresoStringValido("director"));
-                            break;
-                        case 3:
-                            System.out.println("Modificar duracion: ");
-                            midvd.setTiempo(Helper.ingresoShortValido("tiempo"));
-                            break;
-                        case 4:
-                            System.out.println("Modificar adiquision de dvd true/false: ");
-                            midvd.setTengo(Helper.ingresoBooleanValido("si lo tengo"));
-                            break;
-                        case 5:
-                            System.out.println("Modificar comentario: ");
-                            midvd.setComentario(Helper.ingresoStringValido("comentario"));
-                            break;
-                        case 6:
-                            seguirEditando = false;
-                            break;
-                        default:
-                            System.out.println("Opcion no valida");
-                            break;
+                        opcion = Helper.ingresoShortValido("opcion");
+                        switch (opcion) {
+                            case 0:
+                                System.out.println("Modificar titulo: ");
+                                unDisco.setTitulo(Helper.ingresoStringValido("titulo"));
+                                break;
+                            case 1:
+                                System.out.println("Modificar genero: ");
+                                unDisco.setGenero(Helper.ingresoStringValido("genero"));
+                                break;
+                            case 2:
+                                System.out.println("Modificar director: ");
+                                ((DVD)unDisco).setDirector(Helper.ingresoStringValido("director"));
+                                break;
+                            case 3:
+                                System.out.println("Modificar duracion: ");
+                                unDisco.setTiempo(Helper.ingresoShortValido("tiempo"));
+                                break;
+                            case 4:
+                                System.out.println("Modificar adiquision de dvd true/false: ");
+                                unDisco.setTengo(Helper.ingresoBooleanValido("si lo tengo"));
+                                break;
+                            case 5:
+                                System.out.println("Modificar comentario: ");
+                                unDisco.setComentario(Helper.ingresoStringValido("comentario"));
+                                break;
+                            case 6:
+                                seguirEditando = false;
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+                    }else{
+                        System.out.println("""
+                        Ingresar opcion:
+                        0. titulo
+                        1. genero
+                        2. Interprete
+                        3. tiempo de duracion
+                        4. modificar adquisicion CD
+                        5. Comentario
+                        6. Cantidad de canciones
+                        7. salir""");
+                        opcion = Helper.ingresoShortValido("opcion");
+                        switch (opcion) {
+                            case 0:
+                                System.out.println("Modificar titulo: ");
+                                unDisco.setTitulo(Helper.ingresoStringValido("titulo"));
+                                break;
+                            case 1:
+                                System.out.println("Modificar genero: ");
+                                unDisco.setGenero(Helper.ingresoStringValido("genero"));
+                                break;
+                            case 2:
+                                System.out.println("Modificar Interprete: ");
+                                ((CD)unDisco).setInterprete(Helper.ingresoStringValido("Interprete"));
+                                break;
+                            case 3:
+                                System.out.println("Modificar duracion: ");
+                                unDisco.setTiempo(Helper.ingresoShortValido("tiempo"));
+                                break;
+                            case 4:
+                                System.out.println("Modificar adiquision de CD true/false: ");
+                                unDisco.setTengo(Helper.ingresoBooleanValido("si lo tengo"));
+                                break;
+                            case 5:
+                                System.out.println("Modificar comentario: ");
+                                unDisco.setComentario(Helper.ingresoStringValido("comentario"));
+                                break;
+                            case 6:
+                                System.out.println("Modificar Cantidad de canciones: ");
+                                ((CD)unDisco).setCantidadCanciones(Helper.ingresoShortValido("cantidad de canciones"));
+                                break;
+                            case 7:
+                                seguirEditando = false;
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
                     }
+
                 }while(seguirEditando);
                 break;
             }
         }
         if(!encontrado){
-            System.err.println("No se encontro un dvd con ese titulo");
+            System.err.println("No se encontro un Disco con ese titulo");
         }
     }
 
-    public static void mostrarTodosDiscos(byte tipoDisco){
+    public static void mostrarTodosDiscos(short tipoDisco){
         System.out.println("Mostrar todos los elementos:");
         for(Disco disco : catalogoDisco){ //recorro toda el arraylist
-            if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD))
+            if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                 System.out.println(disco);
         }
         System.out.println("\n");
     }
 
-    public static void mostrarDiscoQueTengo(byte tipoDisco){
+    public static void mostrarDiscoQueTengo(short tipoDisco){
         System.out.println("Mostrar todos los Dvd que tengo:");
         for(Disco disco : catalogoDisco){ //recorro todo el arraylist
             if(disco.isTengo()){ //pregunto si el Disco lo tengo
-                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD))
+                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                     System.out.println(disco); //si lo tengo se muestra
             }
         }
         System.out.println("\n");
     }
-    public static void mostrarDiscoMenorTiempo(byte tipoDisco){
+    public static void mostrarDiscoMenorTiempo(short tipoDisco){
         short tiempoIngresado = Helper.ingresoShortValido("tiempo"); //ingreso el tiempo
         System.out.println("Los que tienen un tiempo menor a " + tiempoIngresado);
         for(Disco disco : catalogoDisco){ //recorro todo el arraylist
             if(disco.getTiempo() < tiempoIngresado){ //pregunto si el tiempo de un disco es menor al ingresado
-                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD))
+                if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                     System.out.println(disco); //en caso de ser verdad se muestra
             }
         }
@@ -166,8 +218,8 @@ public class CatalogoDisco {
         String director = Helper.ingresoStringValido("director"); //ingreso director
         System.out.println("Los dvd que tienen al director" + director);
         for(Disco unDisco : catalogoDisco){ //recorro todo el arraylist
-            if(((DVD)unDisco).getDirector().equalsIgnoreCase(director)){
-                if(unDisco instanceof DVD)
+            if(unDisco instanceof DVD){ //pregunto si el disco es un DVD
+                if(((DVD)unDisco).getDirector().equalsIgnoreCase(director)) //Pregunto si el titulo del dvd es igual al del director ingresado
                     System.out.println(unDisco);
             }
         }
@@ -177,7 +229,7 @@ public class CatalogoDisco {
     public static void informarCantidadDVD(){
         short cantidad = 0;
         for(Disco disco : catalogoDisco){
-            if (disco instanceof DVD)
+            if (disco instanceof DVD) //pregunto si el disco es un DVD, si lo es sumo 1
                 cantidad++;
         }
         System.out.println("El total de dvd en el catalogo es " + cantidad); //se muestra la cantidad contada previamente
@@ -185,17 +237,17 @@ public class CatalogoDisco {
 
     public static void informarCantidadCD(){
         short cantidad = 0;
-        for(Disco disco : catalogoDisco){
-            if (disco instanceof CD)
+        for(Disco disco : catalogoDisco){  //recorro el catalogo
+            if (disco instanceof CD) //pregunto si el disco es un DVD, si lo es sumo 1
                 cantidad++;
         }
         System.out.println("El total de cd en el catalogo es " + cantidad); //se muestra la cantidad contada previamente
     }
 
-    public static void informarCantidadDiscoQueTengo(byte tipoDisco){
+    public static void informarCantidadDiscoQueTengo(short tipoDisco){
     short contador = 0; //se declara e inicializa el contador en 0
         for(Disco unDisco : catalogoDisco){ //recorro el catalogo
-            if (unDisco.isTengo() && ((unDisco instanceof  DVD && tipoDisco == 2) || (unDisco instanceof  CD && tipoDisco == 1)) ){ //pregunto si lo tengo
+            if (unDisco.isTengo() && ((unDisco instanceof  DVD && tipoDisco == 2) || (unDisco instanceof  CD && tipoDisco == 1)) ){ //pregunto si lo tengo y pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
                 contador++; //si lo tengo sumo uno al contador
             }
         }
@@ -203,14 +255,30 @@ public class CatalogoDisco {
     }
 
 
-    public static void ordenarXTitulo(){
-        String aux[] = new String[catalogoDisco.size()]; //creo un array auxiliar
-        for(int i = 0; i < catalogoDisco.size(); i++){ //recorro todo el catalogo
-            aux[i] = catalogoDisco.get(i).getTitulo();//guardo el titulo de cada dvd en el array auxiliar
+    public static void ordenarXTitulo(short tipoDisco){
+        short cantidad = 0;
+        if(tipoDisco == 1){
+            for(Disco disco : catalogoDisco){
+                if (disco instanceof CD)
+                    cantidad++; // cuento cantidad de CD
+            }
+        }else{
+            for(Disco disco : catalogoDisco){
+                if (disco instanceof DVD)
+                    cantidad++;  //cuando cantidad de dvd
+            }
+        }
+        String aux[] = new String[cantidad]; //creo un array auxiliar del tamanio de la cantidad de CD o DVD segun corresponda por la variable tipo disco
+        int i = 0;
+        for(Disco disco : catalogoDisco){ //recorro todo el catalogo
+            if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) {
+                aux[i] = disco.getTitulo();//guardo el titulo de cada disco en el array auxiliar
+                i++;
+            }
         }
         Arrays.sort(aux);//ordeno el array
-        for(int i =0; i< aux.length;i++){ //recorro el array auxiliar
-            System.out.println(aux[i]); //muestro el array con los titulos ya ordenados
+        for(int j =0; j< aux.length;j++){ //recorro el array auxiliar
+            System.out.println(aux[j]); //muestro el array con los titulos ya ordenados
         }
     }
 
@@ -227,8 +295,20 @@ public class CatalogoDisco {
             }
         }
         if(!encontrado){
-            System.err.println("No se encontro un dvd con ese titulo");
+            System.err.println("No se encontro un cd con ese titulo");
         }
+    }
+
+    public static void mostrarCDPorInterprete(){
+        String Interprete = Helper.ingresoStringValido("Interprete");
+        System.out.println("Los CD que tienen al Interprete" + Interprete);
+        for(Disco unDisco : catalogoDisco){
+            if(unDisco instanceof CD){
+                if(((CD)unDisco).getInterprete().equalsIgnoreCase(Interprete))
+                    System.out.println(unDisco);
+            }
+        }
+        System.out.println("\n");
     }
 
 }

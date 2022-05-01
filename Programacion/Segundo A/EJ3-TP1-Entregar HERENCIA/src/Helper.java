@@ -4,19 +4,19 @@ public class Helper {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static byte elegirCatalogo(){
+    public static short elegirCatalogo(){
         System.out.println("Ingrese la opcion a realizar");
         System.out.println("-----------------------------");
-        System.out.println("1 = Catalogo DVD");
-        System.out.println("2 = Catalogo CD");
+        System.out.println("1 = Catalogo CD");
+        System.out.println("2 = Catalogo DVD");
         System.out.println("3 = salir");
 
-        byte opcionIngresada = 3;
+        short opcionIngresada = 3;
         boolean opcionIncorrecta;
 
         do {
             try {
-                opcionIngresada = scanner.nextByte(); //se ingresa la opcion
+                opcionIngresada = scanner.nextShort(); //se ingresa la opcion
                 scanner.nextLine();
                 if (opcionIngresada <1 && opcionIngresada > 3) { //si la opcon no es valida tira error
                     System.out.println("Opcion invalida, por favor vuelva a ingresar");
@@ -26,25 +26,26 @@ public class Helper {
                 }
             }catch (Exception e){
                 opcionIncorrecta = true;
+                scanner.nextLine();
                 System.out.println("Opcion invalida, por favor vuelva a ingresar");
             }
 
         } while (opcionIncorrecta);   //se repite el ingreso de opcion si o no hasta que sea valido
 
         if(opcionIngresada == 1){
-            System.out.println("Bienvenido a su catalogo de DVD");
-        }else if(opcionIngresada == 2){
             System.out.println("Bienvenido a su catalogo de CD");
-        }else{
+        }else if(opcionIngresada == 2){
+            System.out.println("Bienvenido a su catalogo de DVD");
+        }else if (opcionIngresada == 3){
             System.out.println("Gracias por usar el programa, nos vemos!!");
         }
 
         return opcionIngresada;
     }
 
-    public static byte nuevaOperacionDVD(){
+    public static short nuevaOperacionDVD(){
         System.out.println("Ingrese la opcion a realizar:");
-        System.out.println("1 = Ingresar nuevo disco");
+        System.out.println("1 = Ingresar nuevo DVD");
         System.out.println("2 = Eliminar DVD por titulo");
         System.out.println("3 = Modificar DVD por titulo");
         System.out.println("4 = Listar todos los DVD");
@@ -56,11 +57,11 @@ public class Helper {
         System.out.println("10 =Informe cantidad de DVD que tengo");
         System.out.println("11 = Salir");
 
-        byte opcionIngresada = 0;
+        short opcionIngresada = 0;
         boolean opcionIncorrecta;
         do {
             try {
-                opcionIngresada = scanner.nextByte();  // se ingresa la operacion
+                opcionIngresada = scanner.nextShort();  // se ingresa la operacion
                 scanner.nextLine();
                 if (opcionIngresada <1 && opcionIngresada > 11) { //pregunto si la opcion es valida
                     System.out.println("Opcion invalida, por favor vuelva a ingresar");
@@ -70,6 +71,7 @@ public class Helper {
                 }
             }catch (Exception e){
                 opcionIncorrecta = true;
+                scanner.nextLine();
                 System.out.println("Opcion invalida, por favor vuelva a ingresar");
             }
 
@@ -78,38 +80,38 @@ public class Helper {
         return opcionIngresada;
     }
 
-    public static boolean iniciarOperacionDVD(short opcion){ //se recive como parametro el numero de opcion y se ejecuta
+    public static boolean iniciarOperacionDVD(short opcion, short catalogo){ //se recive como parametro el numero de opcion y se ejecuta
         boolean seguir = true;
         switch(opcion){
             case 1:
-                catalogoDisco.nuevoDVD();
+                CatalogoDisco.nuevoDisco(catalogo);
                 break;
             case 2:
-                catalogoDisco.eliminarDVD();
+                CatalogoDisco.eliminarDisco(catalogo);
                 break;
             case 3:
-                catalogoDisco.modificarDVD();
+                CatalogoDisco.modificarDisco(catalogo);
                 break;
             case 4:
-                catalogoDisco.mostrarTodosDvd();
+                CatalogoDisco.mostrarTodosDiscos(catalogo);
                 break;
             case 5:
-                catalogoDisco.mostrarDvdQueTengo();
+                CatalogoDisco.mostrarDiscoQueTengo(catalogo);
                 break;
             case 6:
-                catalogoDisco.mostrarDvdMenorTiempo();
+                CatalogoDisco.mostrarDiscoMenorTiempo(catalogo);
                 break;
             case 7:
-                catalogoDisco.mostrarDvdPorDirector();
+                CatalogoDisco.mostrarDvdPorDirector();
                 break;
             case 8:
-                catalogoDisco.ordenarXTitulo();
+                CatalogoDisco.ordenarXTitulo(catalogo);
                 break;
             case 9:
-                catalogoDisco.informarCantidadDVD();
+                CatalogoDisco.informarCantidadDVD();
                 break;
             case 10:
-                catalogoDisco.informarCantidadDVDQueTengo();
+                CatalogoDisco.informarCantidadDiscoQueTengo(catalogo);
                 break;
             case 11:
                 seguir = false;
@@ -121,7 +123,7 @@ public class Helper {
         return seguir;
     }
 
-    public static byte nuevaOperacionCD(){  //identico a DVD pero CD
+    public static short nuevaOperacionCD(){  //identico a DVD pero CD
         System.out.println("Ingrese la opcion a realizar:");
         System.out.println("1 = Ingresar nuevo CD");
         System.out.println("2 = Eliminar CD por titulo");
@@ -133,14 +135,14 @@ public class Helper {
         System.out.println("8 = Listar todos los CD ordenados por titulo");
         System.out.println("9 = Informe cantidad de CD");
         System.out.println("10 =Informe cantidad de CD que tengo");
-        System.out.println("11 =Informe cantidad de caniones de un CD");
+        System.out.println("11 =Informe cantidad de canciones de un CD");
         System.out.println("12 = Salir");
 
-        byte opcionIngresada = 0;
+        short opcionIngresada = 0;
         boolean opcionCorrecta;
         do {
             try {
-                opcionIngresada = scanner.nextByte();
+                opcionIngresada = scanner.nextShort();
                 scanner.nextLine();
                 if (opcionIngresada <1 && opcionIngresada > 12) {
                     System.out.println("Opcion invalida, por favor vuelva a ingresar");
@@ -150,6 +152,7 @@ public class Helper {
                 }
             }catch (Exception e){
                 opcionCorrecta = false;
+                scanner.nextLine();
                 System.out.println("Opcion invalida, por favor vuelva a ingresar");
             }
 
@@ -158,41 +161,41 @@ public class Helper {
         return opcionIngresada;
     }
 
-    public static boolean iniciarOperacionCD(short opcion){ //Identico a dvd pero CD
+    public static boolean iniciarOperacionCD(short opcion, short catalogo){ //Identico a dvd pero CD
         boolean seguir = true;
         switch(opcion){
             case 1:
-                CatalogoCD.nuevoCD();
+                CatalogoDisco.nuevoDisco(catalogo);
                 break;
             case 2:
-                CatalogoCD.eliminarCD();
+                CatalogoDisco.eliminarDisco(catalogo);
                 break;
             case 3:
-                CatalogoCD.modificarCD();
+                CatalogoDisco.modificarDisco(catalogo);
                 break;
             case 4:
-                CatalogoCD.mostrarTodosCD();
+                CatalogoDisco.mostrarTodosDiscos(catalogo);
                 break;
             case 5:
-                CatalogoCD.mostrarCDQueTengo();
+                CatalogoDisco.mostrarDiscoQueTengo(catalogo);
                 break;
             case 6:
-                CatalogoCD.mostrarCDMenorTiempo();
+                CatalogoDisco.mostrarDiscoMenorTiempo(catalogo);
                 break;
             case 7:
-                CatalogoCD.mostrarCDPorInterprete();
+                CatalogoDisco.mostrarCDPorInterprete();
                 break;
             case 8:
-                CatalogoCD.ordenarXTitulo();
+                CatalogoDisco.ordenarXTitulo(catalogo);
                 break;
             case 9:
-                CatalogoCD.informarCantidadCD();
+                CatalogoDisco.informarCantidadCD();
                 break;
             case 10:
-                CatalogoCD.informarCantidadCDQueTengo();
+                CatalogoDisco.informarCantidadDiscoQueTengo(catalogo);
                 break;
             case 11:
-                CatalogoCD.cantidadDeCancionesCd();
+                CatalogoDisco.cantidadDeCancionesCd();
                 break;
             case 12:
                 seguir = false;
@@ -232,10 +235,11 @@ public class Helper {
                     datoIncorrecto = false; //el dato es correcto
                 }else {
                     datoIncorrecto = true; // si es negativo se le informa al usuario
-                    System.out.print("No puede ser negativo");
+                    System.out.print("No puede ser negativo\n");
                 }
             }catch (Exception e){ //si salta al catch por el ingreso de un caracter no numerico se informa que la opcion es incorrecta
-                System.out.print("Opcion incorrecta, ingrese un valor valido");
+                System.out.print("Opcion incorrecta, ingrese un valor valido\n");
+                scanner.nextLine();
                 datoIncorrecto = true;
             }
         }while(datoIncorrecto); //se repite mientras el dato incorrecto sea true
@@ -252,7 +256,8 @@ public class Helper {
                 scanner.nextLine();
                 datoIncorrecto = false;
             }catch (Exception e){
-                System.out.print("Opcion incorrecta, ingrese True o False");
+                System.out.print("Opcion incorrecta, ingrese True o False\n");
+                scanner.nextLine();
                 datoIncorrecto = true;
             }
         }while(datoIncorrecto); //se repite el ingreso de datos mientras sea correcto
