@@ -188,7 +188,7 @@ public class CatalogoDisco {
         System.out.println("Mostrar todos los elementos:");
         for(Disco disco : catalogoDisco){ //recorro toda el arraylist
             if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
-                System.out.println(disco);
+                System.out.println(disco.mostrarDisco());
         }
         System.out.println("\n");
     }
@@ -198,7 +198,7 @@ public class CatalogoDisco {
         for(Disco disco : catalogoDisco){ //recorro todo el arraylist
             if(disco.isTengo()){ //pregunto si el Disco lo tengo
                 if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
-                    System.out.println(disco); //si lo tengo se muestra
+                    System.out.println(disco.mostrarDisco()); //si lo tengo se muestra
             }
         }
         System.out.println("\n");
@@ -209,7 +209,7 @@ public class CatalogoDisco {
         for(Disco disco : catalogoDisco){ //recorro todo el arraylist
             if(disco.getTiempo() < tiempoIngresado){ //pregunto si el tiempo de un disco es menor al ingresado
                 if((tipoDisco == 1 && disco instanceof CD) || (tipoDisco == 2 && disco instanceof DVD)) //pregunto si corresponde el tipo de catalogo con la clase del objeto del catalogo
-                    System.out.println(disco); //en caso de ser verdad se muestra
+                    System.out.println(disco.mostrarDisco()); //en caso de ser verdad se muestra
             }
         }
         System.out.println("\n");
@@ -220,7 +220,7 @@ public class CatalogoDisco {
         for(Disco unDisco : catalogoDisco){ //recorro todo el arraylist
             if(unDisco instanceof DVD){ //pregunto si el disco es un DVD
                 if(((DVD)unDisco).getDirector().equalsIgnoreCase(director)) //Pregunto si el titulo del dvd es igual al del director ingresado
-                    System.out.println(unDisco);
+                    System.out.println(unDisco.mostrarDisco());
             }
         }
         System.out.println("\n");
@@ -305,8 +305,7 @@ public class CatalogoDisco {
         for(Disco unDisco : catalogoDisco){
             if(unDisco instanceof CD){
                 if(((CD)unDisco).getInterprete().equalsIgnoreCase(Interprete))
-                    System.out.println(unDisco);
-            }
+                    System.out.println(unDisco.mostrarDisco());            }
         }
         System.out.println("\n");
     }

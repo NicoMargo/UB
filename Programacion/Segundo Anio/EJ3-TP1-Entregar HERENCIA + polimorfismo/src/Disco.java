@@ -18,6 +18,8 @@ public abstract class Disco {
 
     }
 
+    public abstract String mostrarDisco(); //metodo abtracto para mostrar el disco
+
     public String getGenero() {
         return genero;
     }

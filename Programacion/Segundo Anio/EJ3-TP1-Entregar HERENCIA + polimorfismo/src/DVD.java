@@ -19,7 +19,7 @@ public class DVD extends Disco{
         this.director = director;
     }
     @Override
-    public String toString()
+    public String mostrarDisco() //polimorfismo del metodo abstracto mostrar disco de la clase padre
     {
         return "- Titulo: " + super.getTitulo() + " Genero: " + super.getGenero() + " Director: " + this.director + " Duracion: " + super.getTiempo() + " Tengo: " + super.isTengo() + " Comentario: " + super.getComentario();
     }

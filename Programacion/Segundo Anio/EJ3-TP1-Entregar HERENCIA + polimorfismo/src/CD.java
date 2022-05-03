@@ -31,7 +31,7 @@ public class CD extends Disco {
     }
 
     @Override
-    public String toString()
+    public String mostrarDisco() //polimorfismo del metodo abstracto mostrar disco de la clase padre
     {
         return "- Titulo: " + super.getTitulo() + " Genero: " + super.getGenero() + " Interprete: " + this.interprete + " Duracion: " + super.getTiempo() + " Tengo: " + super.isTengo() + " Comentario: " + super.getComentario() + "Cantidad de canciones: " + this.cantidadCanciones;
     }
