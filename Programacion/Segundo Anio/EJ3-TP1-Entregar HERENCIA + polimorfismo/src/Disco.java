@@ -1,10 +1,10 @@
 public abstract class Disco {
 
-    private String titulo;
-    private String genero;
-    private short tiempo;
-    private boolean tengo;
-    private String comentario;
+    protected String titulo;
+    protected String genero;
+    protected short tiempo;
+    protected boolean tengo;
+    protected String comentario;
 
     public Disco(String titulo, String genero, short tiempo, boolean tengo, String comentario) {
         this.titulo = titulo;

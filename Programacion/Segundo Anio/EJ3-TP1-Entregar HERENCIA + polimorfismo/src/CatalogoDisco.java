@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class CatalogoDisco {
     private static ArrayList<Disco> catalogoDisco = new ArrayList<Disco>();
@@ -24,6 +26,16 @@ public class CatalogoDisco {
         catalogoDisco.add(cd2);
         catalogoDisco.add(cd3);
         catalogoDisco.add(cd4);
+    }
+
+    public static void ordenarXGenero(short tipoDisco){ //Uso de comparator para el ej
+        Collections.sort(catalogoDisco, new OrdenarXGenero());
+        mostrarTodosDiscos(tipoDisco);
+
+    }
+    public static void ordenarXTiempo(short tipoDisco){ //Uso de comparator para el ej
+        Collections.sort(catalogoDisco, new OrdenarXTiempo());
+        mostrarTodosDiscos(tipoDisco);
     }
 
     public static void nuevoDisco(short tipoDisco) { //metodo que agrega un dvd

@@ -1,13 +1,15 @@
 package Main;
 
+import java.sql.Struct;
+
 public class Alimento extends Carga{
     private String nombre;
-    private short cantidad;
+    private int cantidad;
 
-    private double peso;
-
-    public Alimento(short cantidad){
+    public Alimento(int cantidad, String nombre, double peso){
+        this.nombre = nombre;
         this.cantidad = cantidad;
+        super.peso = peso;
     }
     @Override
     public double calcularPeso(){

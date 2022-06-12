@@ -1,0 +1,1 @@
+Agregue 2 clases a mi entraga con excepciones (OrdenarXGenero y OrdenarXTiempo). en la clase Catalogo agregue 2 nuevo metodos para implementar las clases.

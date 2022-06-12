@@ -1,8 +1,5 @@
 package Main;
 
-public abstract class Carga {
-
+public interface Peso {
     public abstract double calcularPeso();
-
-
 }

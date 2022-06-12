@@ -55,7 +55,9 @@ public class Helper {
         System.out.println("8 = Listar todos los DVD ordenados por titulo");
         System.out.println("9 = Informe cantidad de DVD");
         System.out.println("10 =Informe cantidad de DVD que tengo");
-        System.out.println("11 = Salir");
+        System.out.println("11 =Listar DVD ordenados por genero");
+        System.out.println("12 =Listar DVD ordenados por tiempo");
+        System.out.println("13 = Salir");
 
         short opcionIngresada = 0;
         boolean opcionIncorrecta;
@@ -63,7 +65,7 @@ public class Helper {
             try {
                 opcionIngresada = scanner.nextShort();  // se ingresa la operacion
                 scanner.nextLine();
-                if (opcionIngresada <1 && opcionIngresada > 11) { //pregunto si la opcion es valida
+                if (opcionIngresada <1 && opcionIngresada > 13) { //pregunto si la opcion es valida
                     System.out.println("Opcion invalida, por favor vuelva a ingresar");
                     opcionIncorrecta = true;
                 } else {
@@ -114,6 +116,12 @@ public class Helper {
                 CatalogoDisco.informarCantidadDiscoQueTengo(catalogo);
                 break;
             case 11:
+                CatalogoDisco.ordenarXGenero(catalogo);
+                break;
+            case 12:
+                CatalogoDisco.ordenarXTiempo(catalogo);
+                break;
+            case 13:
                 seguir = false;
                 break;
             default:
@@ -136,7 +144,9 @@ public class Helper {
         System.out.println("9 = Informe cantidad de CD");
         System.out.println("10 =Informe cantidad de CD que tengo");
         System.out.println("11 =Informe cantidad de canciones de un CD");
-        System.out.println("12 = Salir");
+        System.out.println("12 =Listar CD ordenados por genero");
+        System.out.println("13 =Listar CD ordenados por tiempo");
+        System.out.println("14 = Salir");
 
         short opcionIngresada = 0;
         boolean opcionCorrecta;
@@ -198,6 +208,12 @@ public class Helper {
                 CatalogoDisco.cantidadDeCancionesCd();
                 break;
             case 12:
+                CatalogoDisco.ordenarXGenero(catalogo);
+                break;
+            case 13:
+                CatalogoDisco.ordenarXTiempo(catalogo);
+                break;
+            case 14:
                 seguir = false;
                 break;
             default:
