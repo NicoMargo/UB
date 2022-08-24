@@ -1,19 +1,25 @@
 package Main;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-
-        Ventana v1 = new Ventana();
-        v1.setVisible(true);
-
-    System.out.println(calcularFactorial(6));
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new VentanaGUI();
+                frame.setSize(500,500);
+                frame.setVisible(true);
+            }
+        });
 
     }
+    //Metodo que recibe un numero y retorna el resultado del factorial
     public static int calcularFactorial(int n){
-        int acum = n*(n-1);
-        n = n-2;
+        int acum = n*(n-1); //Se multiplican los dos ultimos numeros
+        n = n-2; //resto 2 a n que equevale a los des ultimos numeros que multiplique
         while (n>1){
-            acum*=n;
+            acum*=n; //se multiplica el acumulador por n
             n--;
         }
         return  acum;
