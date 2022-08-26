@@ -12,6 +12,13 @@ public class MyPanel extends JFrame {
     private JPanel panel1;
     private JButton btnOrdenar;
     private JButton btnTransponer;
+    private JLabel lblIngresarTam;
+    private JButton btnCrearMatriz;
+    private JTextField txtfCrearMatriz;
+    private JLabel lblIngresarNumero;
+    private JTextField txtfIngresarNumeroMatriz;
+    private JButton btnAgregarNumero;
+    private JTextField txtIngresarFilas;
     private boolean estadoOrden = true;
 
     private void cargarTabla(){
@@ -25,7 +32,7 @@ public class MyPanel extends JFrame {
             }
         }
 
-        for(int i = 0; i < Main.matriz.length; i++){
+        for(int i = 0; i < Main.matriz[0].length; i++){
             cantColumnas[i] = "Columna " + i;
         }
         table.setModel(new DefaultTableModel(
@@ -33,8 +40,38 @@ public class MyPanel extends JFrame {
         ));
     }
     public MyPanel(){
+        btnAgregarNumero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                boolean terminado = false;
+                for(int i = 0; i < Main.matriz.length; i++){
+                    for(int j = 0; j < Main.matriz[0].length; j++){
+                        if(Main.matriz[i][j] == 0){
+                            Main.matriz[i][j] = Integer.parseInt(txtfIngresarNumeroMatriz.getText());
+                            terminado = true;
+                            break;
+                        }
+                    }
+                    if(terminado)
+                        break;
+                }
+                cargarTabla();
+                txtfIngresarNumeroMatriz.setText("");
+            }
+            });
 
-        cargarTabla();
+        btnCrearMatriz.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Main.matriz = new int [Integer.parseInt(txtIngresarFilas.getText())][Integer.parseInt(txtfCrearMatriz.getText())];
+                Main.matriz = HelperMatriz.ordenarMatrizAsc(Main.matriz);
+                btnAgregarNumero.setEnabled(true);
+                txtfIngresarNumeroMatriz.setEnabled(true);
+                txtIngresarFilas.setText("");
+                txtfCrearMatriz.setText("");
+                cargarTabla();
+            }
+        });
 
 
         btnOrdenar.addActionListener(new ActionListener() {

@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() { //Creacion de ventana gui
             @Override
             public void run() {
-                JFrame frame = new VentanaGUI();
-                frame.setSize(500,500);
+                JFrame frame = new VentanaGUI(); //ccreo la ventana
+                frame.setSize(500,500); //set dimensiones ventana
                 frame.setVisible(true);
             }
         });
