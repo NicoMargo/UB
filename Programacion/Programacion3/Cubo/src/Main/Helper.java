@@ -30,7 +30,6 @@ public class Helper {
         System.out.println("5 = Alea (Cargar todo el cubo con datos aleatorios)");
         System.out.println("6 = Salir");
 
-
         short opcionIngresada = 0;
         boolean opcionIncorrecta;
         do {
@@ -52,18 +51,23 @@ public class Helper {
         return opcionIngresada;
     }
 
-    public static boolean iniciarOperacionCubo(short opcion){ //se recive como parametro el numero de opcion y se ejecuta
+    public static boolean iniciarOperacionCubo(short opcion, Cubo cubo){ //se recibe como parametro el numero de opcion y se ejecuta
         boolean seguir = true;
         switch(opcion){
             case 1:
+                cubo.cargarCubo();
                 break;
             case 2:
+                cubo.modificarCubo();
                 break;
             case 3:
+                cubo.anularCubo();
                 break;
             case 4:
+                cubo.mostrarCuboNulos();
                 break;
             case 5:
+                cubo.randomCubo();
                 break;
             case 6:
                 seguir = false;
@@ -121,7 +125,7 @@ public class Helper {
             try {
                 datoIngresado = scanner.nextShort();
                 scanner.nextLine();
-                if(datoIngresado > 0){ //pregunto si el dato es mayor a 0
+                if(datoIngresado >= 0){ //pregunto si el dato es mayor igual a 0
                     datoIncorrecto = false; //el dato es correcto
                 }else {
                     datoIncorrecto = true; // si es negativo se le informa al usuario
@@ -133,6 +137,21 @@ public class Helper {
                 datoIncorrecto = true;
             }
         }while(datoIncorrecto); //se repite mientras el dato incorrecto sea true
+        return  datoIngresado;
+    }
+
+    public static Short ingresoShortValidoZ(String campo){
+        System.out.println(campo);
+        short datoIngresado = 0;
+        boolean datoIncorrecto;  //booleano que indica si el dato ingredado es incorrecto
+            try {
+                datoIngresado = scanner.nextShort();
+                scanner.nextLine();
+            }catch (Exception e){ //si salta al catch por el ingreso de un caracter no numerico se informa que la opcion es incorrecta
+                System.out.print("Opcion incorrecta, ingrese un valor valido\n");
+                scanner.nextLine();
+                datoIncorrecto = true;
+            }
         return  datoIngresado;
     }
 

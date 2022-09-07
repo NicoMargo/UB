@@ -2,11 +2,12 @@ package Main;
 
 public class Main {
     public static void main(String[] args) {
-        System.err.println("test");
         Cubo elCubo = new Cubo(Helper.menuCrearCubo());
-        while (Helper.iniciarOperacionCubo(Helper.nuevaOperacionCubo())) {
-
-        }
+        short opcion;
+        do {
+            elCubo.mostrarCubo();
+            opcion = Helper.nuevaOperacionCubo();
+        }while (Helper.iniciarOperacionCubo(opcion, elCubo));
         System.out.println("Muchas gracias por utilizar el programa!!");
     }
 }
