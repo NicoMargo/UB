@@ -1,34 +1,22 @@
 package Main;
+import javax.swing.*;
 
 public class Main {
+    public static int matriz[][];
+
     public static void main(String[] args) {
-        int matriz[][] = {{55,33,22,5},{1,4,99,0},{14,63,46,91}};
 
-        int u[][] = ordenarMatrizAsc(matriz);
-    }
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new MyPanel();   //Instancio un objeto para crear el frame
+                frame.setSize(700,700); //seteo dimensiones
+                frame.setVisible(true); //hago visible el frame
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            }
+        });
 
-    public static int[][] ordenarMatrizAsc(int matriz[][]){
-        int matrizAux[][] = new int [matriz.length][matriz[0].length];
-        int aux,x=0,y=0;
-        for(int i = 0; i < matriz.length*matriz[0].length; i++){
-            int min = 999999999;
-            for(int j = 0; j < matriz.length; j++){
-                for(int k = 0; k < matriz[0].length; k++){
-                    if(matriz[j][k] < min){
-                        aux = min;
-                        min = matriz[j][k];
-                        matriz[j][k] = aux;
-                    }
-                }
-            }
-            matrizAux[y][x] = min;
-            x++;
-            if(y == matrizAux[0].length){
-                x=0;
-                y++;
-            }
-        }
-        return matrizAux;
+
 
     }
 }
